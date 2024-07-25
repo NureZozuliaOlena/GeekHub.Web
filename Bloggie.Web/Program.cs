@@ -12,6 +12,7 @@ namespace Bloggie.Web
 
             // Add services to the container.
             builder.Services.AddRazorPages();
+            builder.Services.AddControllers();
 
             builder.Services.AddDbContext<BloggieDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("BloggieDbConnectionString")));
@@ -36,6 +37,7 @@ namespace Bloggie.Web
             app.UseAuthorization();
 
             app.MapRazorPages();
+            app.MapControllers();
 
             app.Run();
         }
