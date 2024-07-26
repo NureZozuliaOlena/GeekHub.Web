@@ -7,6 +7,7 @@ namespace Bloggie.Web.Repositories
         Task<IEnumerable<BlogPost>> GetAllAsync();
         Task<BlogPost> GetAsync(Guid id);
         Task<BlogPost> AddAsync(BlogPost blogPost);
+        Task<BlogPost> GetAsync(string urlHandle);
         Task<BlogPost> UpdateAsync(BlogPost blogPost);
         Task<bool> DeleteAsync(Guid id);
     }
