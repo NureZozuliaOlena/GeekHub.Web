@@ -1,7 +1,7 @@
 ﻿
 using CloudinaryDotNet;
 
-namespace Bloggie.Web.Repositories
+namespace GeekHub.Web.Repositories
 {
     public class ImageRepositoryCloudinary : IImageRepository
     {

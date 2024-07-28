@@ -1,4 +1,4 @@
-﻿namespace Bloggie.Web.Models.ViewModels
+﻿namespace GeekHub.Web.Models.ViewModels
 {
     public class AddBlogPost
     {

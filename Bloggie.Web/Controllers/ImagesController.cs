@@ -1,8 +1,8 @@
-﻿using Bloggie.Web.Repositories;
+﻿using GeekHub.Web.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace Bloggie.Web.Controllers
+namespace GeekHub.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

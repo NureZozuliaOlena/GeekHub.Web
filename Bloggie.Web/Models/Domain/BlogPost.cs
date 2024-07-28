@@ -1,4 +1,4 @@
-﻿namespace Bloggie.Web.Models.Domain
+﻿namespace GeekHub.Web.Models.Domain
 {
     public class BlogPost
     {

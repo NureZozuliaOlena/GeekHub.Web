@@ -1,13 +1,13 @@
-using Bloggie.Web.Data;
-using Bloggie.Web.Models.Domain;
-using Bloggie.Web.Models.ViewModels;
-using Bloggie.Web.Repositories;
+using GeekHub.Web.Data;
+using GeekHub.Web.Models.Domain;
+using GeekHub.Web.Models.ViewModels;
+using GeekHub.Web.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
-namespace Bloggie.Web.Pages.Admin.Blogs
+namespace GeekHub.Web.Pages.Admin.Blogs
 {
     public class ListModel : PageModel
     {

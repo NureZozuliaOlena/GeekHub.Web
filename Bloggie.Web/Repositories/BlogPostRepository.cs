@@ -1,34 +1,34 @@
-﻿using Bloggie.Web.Data;
-using Bloggie.Web.Models.Domain;
+﻿using GeekHub.Web.Data;
+using GeekHub.Web.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bloggie.Web.Repositories
+namespace GeekHub.Web.Repositories
 {
     public class BlogPostRepository : IBlogPostRepository
     {
-        private readonly BloggieDbContext bloggieDbContext;
+        private readonly GeekHubDbContext GeekHubDbContext;
 
-        public BlogPostRepository(BloggieDbContext bloggieDbContext) 
+        public BlogPostRepository(GeekHubDbContext GeekHubDbContext) 
         {
-            this.bloggieDbContext = bloggieDbContext;
+            this.GeekHubDbContext = GeekHubDbContext;
         }
 
         public async Task<BlogPost> AddAsync(BlogPost blogPost)
         {
-            await bloggieDbContext.BlogPosts.AddAsync(blogPost);
-            await bloggieDbContext.SaveChangesAsync();
+            await GeekHubDbContext.BlogPosts.AddAsync(blogPost);
+            await GeekHubDbContext.SaveChangesAsync();
 
             return blogPost;
         }
 
         public async Task<bool> DeleteAsync(Guid id)
         {
-            var existingBlogPost = await bloggieDbContext.BlogPosts.FindAsync(id);
+            var existingBlogPost = await GeekHubDbContext.BlogPosts.FindAsync(id);
             
             if (existingBlogPost != null)
             {
-                bloggieDbContext.BlogPosts.Remove(existingBlogPost);
-                await bloggieDbContext.SaveChangesAsync();
+                GeekHubDbContext.BlogPosts.Remove(existingBlogPost);
+                await GeekHubDbContext.SaveChangesAsync();
                 return true;
             }
 
@@ -37,31 +37,31 @@ namespace Bloggie.Web.Repositories
 
         public async Task<IEnumerable<BlogPost>> GetAllAsync()
         {
-            return await bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).ToListAsync();
+            return await GeekHubDbContext.BlogPosts.Include(nameof(BlogPost.Tags)).ToListAsync();
         }
 
         public async Task<IEnumerable<BlogPost>> GetAllAsync(string tagName)
         {
-            return await (bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags))
+            return await (GeekHubDbContext.BlogPosts.Include(nameof(BlogPost.Tags))
                 .Where(x => x.Tags.Any(x => x.Name == tagName)))
                 .ToListAsync();
         }
 
         public async Task<BlogPost> GetAsync(Guid id)
         {
-            return await bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags))
+            return await GeekHubDbContext.BlogPosts.Include(nameof(BlogPost.Tags))
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<BlogPost> GetAsync(string urlHandle)
         {
-            return await bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags))
+            return await GeekHubDbContext.BlogPosts.Include(nameof(BlogPost.Tags))
                 .FirstOrDefaultAsync(x => x.UrlHandle == urlHandle);
         }
 
         public async Task<BlogPost> UpdateAsync(BlogPost blogPost)
         {
-            var existingBlogPost = await bloggieDbContext.BlogPosts.Include(nameof(BlogPost.Tags))
+            var existingBlogPost = await GeekHubDbContext.BlogPosts.Include(nameof(BlogPost.Tags))
                 .FirstOrDefaultAsync(x => x.Id == blogPost.Id);
 
             if (existingBlogPost != null)
@@ -78,14 +78,14 @@ namespace Bloggie.Web.Repositories
 
                 if (blogPost.Tags != null && blogPost.Tags.Any())
                 {
-                    bloggieDbContext.Tags.RemoveRange(existingBlogPost.Tags);
+                    GeekHubDbContext.Tags.RemoveRange(existingBlogPost.Tags);
 
                     blogPost.Tags.ToList().ForEach(x => x.BlogPostId = existingBlogPost.Id);
-                    await bloggieDbContext.Tags.AddRangeAsync(blogPost.Tags);
+                    await GeekHubDbContext.Tags.AddRangeAsync(blogPost.Tags);
                 }
             }
 
-            await bloggieDbContext.SaveChangesAsync();
+            await GeekHubDbContext.SaveChangesAsync();
 
             return existingBlogPost;
         }

@@ -1,21 +1,21 @@
-﻿using Bloggie.Web.Data;
-using Bloggie.Web.Models.Domain;
+﻿using GeekHub.Web.Data;
+using GeekHub.Web.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bloggie.Web.Repositories
+namespace GeekHub.Web.Repositories
 {
     public class TagRepository : ITagRepository
     {
-        private readonly BloggieDbContext bloggieDbContext;
+        private readonly GeekHubDbContext GeekHubDbContext;
 
-        public TagRepository(BloggieDbContext bloggieDbContext)
+        public TagRepository(GeekHubDbContext GeekHubDbContext)
         {
-            this.bloggieDbContext = bloggieDbContext;
+            this.GeekHubDbContext = GeekHubDbContext;
         }
 
         public async Task<IEnumerable<Tag>> GetAllAsync()
         {
-            var tags = await bloggieDbContext.Tags.ToListAsync();
+            var tags = await GeekHubDbContext.Tags.ToListAsync();
 
             return tags.DistinctBy(x => x.Name.ToLower());
         }

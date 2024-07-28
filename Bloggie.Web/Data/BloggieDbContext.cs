@@ -1,12 +1,12 @@
-﻿using Bloggie.Web.Models.Domain;
+﻿using GeekHub.Web.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace Bloggie.Web.Data
+namespace GeekHub.Web.Data
 {
-    public class BloggieDbContext : DbContext
+    public class GeekHubDbContext : DbContext
     {
-        public BloggieDbContext(DbContextOptions options) : base(options)
+        public GeekHubDbContext(DbContextOptions options) : base(options)
         {
         }
 

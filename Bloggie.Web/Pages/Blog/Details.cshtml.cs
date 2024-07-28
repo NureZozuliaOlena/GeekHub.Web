@@ -1,9 +1,9 @@
-using Bloggie.Web.Models.Domain;
-using Bloggie.Web.Repositories;
+using GeekHub.Web.Models.Domain;
+using GeekHub.Web.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Bloggie.Web.Pages.Blog
+namespace GeekHub.Web.Pages.Blog
 {
     public class DetailsModel : PageModel
     {

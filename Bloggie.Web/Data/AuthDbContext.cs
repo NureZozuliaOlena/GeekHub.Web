@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bloggie.Web.Data
+namespace GeekHub.Web.Data
 {
     public class AuthDbContext : IdentityDbContext
     {

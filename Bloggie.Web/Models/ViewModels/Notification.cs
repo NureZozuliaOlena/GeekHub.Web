@@ -1,6 +1,6 @@
-﻿using Bloggie.Web.Enums;
+﻿using GeekHub.Web.Enums;
 
-namespace Bloggie.Web.Models.ViewModels
+namespace GeekHub.Web.Models.ViewModels
 {
     public class Notification
     {

@@ -1,4 +1,4 @@
-﻿namespace Bloggie.Web.Repositories
+﻿namespace GeekHub.Web.Repositories
 {
     public interface IImageRepository
     {

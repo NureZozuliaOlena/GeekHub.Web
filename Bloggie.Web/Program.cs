@@ -1,8 +1,8 @@
-using Bloggie.Web.Data;
-using Bloggie.Web.Repositories;
+using GeekHub.Web.Data;
+using GeekHub.Web.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bloggie.Web
+namespace GeekHub.Web
 {
     public class Program
     {
@@ -14,8 +14,8 @@ namespace Bloggie.Web
             builder.Services.AddRazorPages();
             builder.Services.AddControllers();
 
-            builder.Services.AddDbContext<BloggieDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("BloggieDbConnectionString")));
+            builder.Services.AddDbContext<GeekHubDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("GeekHubDbConnectionString")));
 
             builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
             builder.Services.AddScoped<IImageRepository, ImageRepositoryCloudinary>();

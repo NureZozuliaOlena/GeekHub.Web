@@ -1,4 +1,4 @@
-﻿namespace Bloggie.Web.Enums
+﻿namespace GeekHub.Web.Enums
 {
     public enum NotificationType
     {
