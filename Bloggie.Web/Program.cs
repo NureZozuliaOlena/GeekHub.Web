@@ -1,5 +1,6 @@
 using GeekHub.Web.Data;
 using GeekHub.Web.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeekHub.Web
@@ -16,6 +17,12 @@ namespace GeekHub.Web
 
             builder.Services.AddDbContext<GeekHubDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("GeekHubDbConnectionString")));
+
+            builder.Services.AddDbContext<AuthDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("GeekHubAuthDbConnectionString")));
+
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AuthDbContext>();
 
             builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
             builder.Services.AddScoped<IImageRepository, ImageRepositoryCloudinary>();
@@ -36,6 +43,7 @@ namespace GeekHub.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();
