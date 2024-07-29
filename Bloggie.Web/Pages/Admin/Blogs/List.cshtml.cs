@@ -2,6 +2,7 @@ using GeekHub.Web.Data;
 using GeekHub.Web.Models.Domain;
 using GeekHub.Web.Models.ViewModels;
 using GeekHub.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using System.Text.Json;
 
 namespace GeekHub.Web.Pages.Admin.Blogs
 {
+    [Authorize(Roles = "Admin")]
     public class ListModel : PageModel
     {
         private readonly IBlogPostRepository blogPostRepository;

@@ -1,14 +1,14 @@
-using GeekHub.Web.Data;
 using GeekHub.Web.Models.Domain;
 using GeekHub.Web.Models.ViewModels;
 using GeekHub.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace GeekHub.Web.Pages.Admin.Blogs
 {
+    [Authorize(Roles = "Admin")]
     public class AddModel : PageModel
     {
         private readonly IBlogPostRepository blogPostRepository;
