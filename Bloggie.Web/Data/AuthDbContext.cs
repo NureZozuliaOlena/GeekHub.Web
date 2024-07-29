@@ -53,7 +53,9 @@ namespace GeekHub.Web.Data
             {
                 Id = superAdminId,
                 UserName = "superadmin@geekhub.com",
-                Email = "superadmin@geekhub.com"
+                Email = "superadmin@geekhub.com",
+                NormalizedEmail = "superadmin@geekhub.com".ToUpper(),
+                NormalizedUserName = "superadmin@geekhub.com".ToUpper()
             };
 
             superAdminUser.PasswordHash = new PasswordHasher<IdentityUser>()
