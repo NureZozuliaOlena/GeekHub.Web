@@ -6,7 +6,7 @@ namespace GeekHub.Web.Data
 {
     public class GeekHubDbContext : DbContext
     {
-        public GeekHubDbContext(DbContextOptions options) : base(options)
+        public GeekHubDbContext(DbContextOptions<GeekHubDbContext> options) : base(options)
         {
         }
 
