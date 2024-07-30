@@ -44,6 +44,7 @@ namespace GeekHub.Web
             builder.Services.AddScoped<IImageRepository, ImageRepositoryCloudinary>();
             builder.Services.AddScoped<ITagRepository, TagRepository>();
             builder.Services.AddScoped<IBlogPostLikeRepository, BlogPostLikeRepository>();
+            builder.Services.AddScoped<IBlogPostCommentRepository, BlogPostCommentRepository>();
 
             var app = builder.Build();
 
