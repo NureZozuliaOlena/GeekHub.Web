@@ -1,15 +1,25 @@
 using GeekHub.Web.Models.ViewModels;
 using GeekHub.Web.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Principal;
 
 namespace GeekHub.Web.Pages.Admin.Users
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly IUserRepository userRepository;
 
         public List<User> Users { get; set; }
+
+        [BindProperty]
+        public AddUser AddUserRequest { get; set; }
+
+        [BindProperty]
+        public Guid SelectedUserId { get; set; }
 
         public IndexModel(IUserRepository userRepository)
         {
@@ -17,6 +27,50 @@ namespace GeekHub.Web.Pages.Admin.Users
         }
 
         public async Task<IActionResult> OnGet()
+        {
+            await GetUsers();
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                var identityUser = new IdentityUser
+                {
+                    UserName = AddUserRequest.Username,
+                    Email = AddUserRequest.Email
+                };
+
+                var roles = new List<string> { "User" };
+
+                if (AddUserRequest.AdminCheckbox)
+                {
+                    roles.Add("Admin");
+                }
+
+                var result = await userRepository.Add(identityUser, AddUserRequest.Password, roles);
+
+                if (result)
+                {
+                    return RedirectToPage("/Admin/Users/Index");
+                }
+
+                return Page();
+            }
+
+            await GetUsers();
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostDelete()
+        {
+            await userRepository.Delete(SelectedUserId);
+            return RedirectToPage("/Admin/Users/Index");
+        }
+
+
+        private async Task GetUsers()
         {
             var users = await userRepository.GetAll();
 
@@ -30,8 +84,6 @@ namespace GeekHub.Web.Pages.Admin.Users
                     Email = user.Email
                 });
             }
-
-            return Page();
         }
     }
 }
