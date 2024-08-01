@@ -28,7 +28,7 @@ namespace GeekHub.Web.Pages
                 var user = new IdentityUser
                 {
                     UserName = RegisterViewModel.Username,
-                    Email = RegisterViewModel.Email,
+                    Email = RegisterViewModel.Email
                 };
 
                 var identityResult = await userManager.CreateAsync(user, RegisterViewModel.Password);
@@ -42,7 +42,7 @@ namespace GeekHub.Web.Pages
                         ViewData["Notification"] = new Notification
                         {
                             Type = Enums.NotificationType.Success,
-                            Message = "User registered successfully"
+                            Message = "User registered successfully."
                         };
 
                         return Page();
@@ -52,12 +52,11 @@ namespace GeekHub.Web.Pages
                 ViewData["Notification"] = new Notification
                 {
                     Type = Enums.NotificationType.Error,
-                    Message = "Something went wrong"
+                    Message = "Something went wrong."
                 };
 
                 return Page();
             }
-
             else
             {
                 return Page();

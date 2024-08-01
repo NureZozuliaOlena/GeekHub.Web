@@ -5,15 +5,17 @@
 @inject UserManager<IdentityUser> userManager
 @inject SignInManager<IdentityUser> signInManager
 
-@{
-    ViewData["Title"] = Model.BlogPost.PageTitle;
-}
 
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-6">
-            @if (Model.BlogPost != null)
-            {
+@if (Model.BlogPost != null)
+{
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+
+                @{
+                    ViewData["Title"] = Model.BlogPost.PageTitle;
+                }
+
                 <h1 class="mb-3">@Model.BlogPost.Heading</h1>
 
                 <div class="d-flex justify-content-between mb-3">
@@ -51,11 +53,12 @@
                             <a href="/tags/@tag.Name">
                                 <span class="badge bg-dark">@tag.Name</span>
                             </a>
+
                         }
                     }
                 </div>
 
-                <img src="@Model.BlogPost.FeaturedImageUrl" class="d-block img-fluid mb-3"/>
+                <img src="@Model.BlogPost.FeaturedImageUrl" class="d-block img-fluid mb-3" />
 
                 <div class="mb-3 blog-details">
                     @Html.Raw(Model.BlogPost.Content)
@@ -71,6 +74,7 @@
                                 <div class="mb-3">
                                     <label class="form-label">Comment Description</label>
                                     <input type="text" class="form-control" asp-for="CommentDescription" />
+                                    <span class="text-danger" asp-validation-for="CommentDescription"></span>
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-dark">Add Comment</button>
@@ -78,6 +82,7 @@
                                 </div>
                             </form>
                         }
+
                     </div>
                     <div class="card-body">
                         @if (Model.Comments != null && Model.Comments.Any())
@@ -100,23 +105,20 @@
                         }
                         else
                         {
-                            <p>No comments</p>
+                            <p>No comments.</p>
                         }
+
                     </div>
                 </div>
-            }
-            else
-            {
-                <h2>Blog Post not found!</h2>
-            }
+            </div>
         </div>
     </div>
-</div>
 
-@section Scripts {
+    @section Scripts {
     <script>
         const btnLike = document.getElementById('btnLike');
         const totalLikesElement = document.getElementById('totalLikes');
+
         async function getTotalLikes() {
             fetch('/api/blogpostlike/@Model.BlogPost.Id/totallikes', {
                 method: 'GET',
@@ -128,7 +130,9 @@
                 .then(data => data.json())
                 .then(result => totalLikesElement.innerHTML = result);
         }
+
         async function addLikeForBlog() {
+
             fetch('/api/blogpostlike/add', {
                 method: 'POST',
                 headers: {
@@ -143,6 +147,15 @@
                     getTotalLikes();
                 });
         }
+
         btnLike.addEventListener('click', addLikeForBlog);
+
     </script>
+    }
+}
+else
+{
+    <div class="container mt-3">
+        <h2>Blog post not found!</h2>
+    </div>
 }

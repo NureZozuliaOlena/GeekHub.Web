@@ -2,6 +2,7 @@
 @model GeekHub.Web.Pages.LoginModel
 @{
 }
+
 <div class="container mx-auto">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-6">
@@ -11,6 +12,7 @@
             <partial name="_Notification">
 
                 <form method="post">
+
                     <div class="mb-3">
                         <label class="form-label">Username</label>
                         <input type="text" class="form-control" asp-for="LoginViewModel.Username" required />
@@ -26,6 +28,7 @@
                     <div class="mb-3">
                         <button type="submit" class="btn bg-dark text-light">Login</button>
                     </div>
+
                 </form>
         </div>
     </div>

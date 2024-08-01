@@ -69,7 +69,6 @@ namespace GeekHub.Web.Pages.Admin.Users
             return RedirectToPage("/Admin/Users/Index");
         }
 
-
         private async Task GetUsers()
         {
             var users = await userRepository.GetAll();
@@ -85,5 +84,6 @@ namespace GeekHub.Web.Pages.Admin.Users
                 });
             }
         }
+
     }
 }

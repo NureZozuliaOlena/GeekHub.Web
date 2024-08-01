@@ -21,9 +21,9 @@ namespace GeekHub.Web.Pages
         {
         }
 
-        public async Task<IActionResult> OnPost(string ReturnUrl)
+        public async Task<IActionResult> OnPost(string? ReturnUrl)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var signInResult = await signInManager.PasswordSignInAsync(
                 LoginViewModel.Username, LoginViewModel.Password, false, false);
@@ -37,7 +37,6 @@ namespace GeekHub.Web.Pages
 
                     return RedirectToPage("Index");
                 }
-
                 else
                 {
                     ViewData["Notification"] = new Notification
@@ -50,10 +49,7 @@ namespace GeekHub.Web.Pages
                 }
             }
 
-            else
-            {
-                return Page();
-            }
+            return Page();
         }
     }
 }

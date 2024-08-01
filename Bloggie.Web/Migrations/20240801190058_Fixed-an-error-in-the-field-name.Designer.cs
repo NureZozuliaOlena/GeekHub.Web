@@ -4,6 +4,7 @@ using GeekHub.Web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GeekHub.Web.Migrations
 {
     [DbContext(typeof(GeekHubDbContext))]
-    partial class GeekHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240801190058_Fixed-an-error-in-the-field-name")]
+    partial class Fixedanerrorinthefieldname
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
