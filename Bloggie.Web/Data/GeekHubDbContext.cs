@@ -1,6 +1,5 @@
 ﻿using GeekHub.Web.Models.Domain;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace GeekHub.Web.Data
 {

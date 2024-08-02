@@ -1,4 +1,3 @@
-using GeekHub.Web.Data;
 using GeekHub.Web.Models.Domain;
 using GeekHub.Web.Models.ViewModels;
 using GeekHub.Web.Repositories;
