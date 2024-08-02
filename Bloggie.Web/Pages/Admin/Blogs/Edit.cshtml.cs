@@ -19,7 +19,7 @@ namespace GeekHub.Web.Pages.Admin.Blogs
         public EditBlogPostRequest BlogPost { get; set; }
 
         [BindProperty]
-        public IFormFile FeaturedImage { get; set; }
+        public IFormFile? FeaturedImage { get; set; }
 
         [BindProperty]
         [Required]

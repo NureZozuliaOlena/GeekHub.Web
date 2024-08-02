@@ -18,7 +18,7 @@ namespace GeekHub.Web.Pages.Admin.Blogs
         public AddBlogPost AddBlogPostRequest { get; set; }
 
         [BindProperty]
-        public IFormFile FeaturedImage { get; set; }
+        public IFormFile? FeaturedImage { get; set; }
 
         [BindProperty]
         [Required]
